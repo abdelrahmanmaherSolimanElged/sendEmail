@@ -22,10 +22,16 @@ namespace sendEmail.Controllers
         [HttpPost]
         public IActionResult SendEmail(MailFields email)
         {
-            _emailService.SendEmail(email);
-            return Ok();
-
-        }
+            if (!ModelState.IsValid) return View();
+            try {
+                _emailService.SendEmail(email);
+                ViewBag.Message = "Mail Send";
+                ModelState.Clear();
+            } catch (Exception ex) {
+                ViewBag.Message = ex.Message.ToString();
+            }
+                return View();
         }
     }
+}
 
