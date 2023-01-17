@@ -10,12 +10,22 @@ namespace sendEmail.Controllers
         {
             _emailService = emailService;
         }
+        [HttpGet]
+        public IActionResult SendEmail()
+        {
+            return View();
+
+        }
+
+
 
         [HttpPost]
         public IActionResult SendEmail(MailFields email)
         {
             _emailService.SendEmail(email);
-            return View();
+            return Ok();
+
+        }
         }
     }
-}
+

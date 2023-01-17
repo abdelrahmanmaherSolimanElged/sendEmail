@@ -8,10 +8,12 @@ namespace sendEmail.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IEmailService _emailService;
+        public HomeController(ILogger<HomeController> logger, IEmailService emailService)
         {
             _logger = logger;
+            _emailService = emailService;
+
         }
 
         public IActionResult Index()
@@ -30,5 +32,6 @@ namespace sendEmail.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
         
+       
     }
 }
